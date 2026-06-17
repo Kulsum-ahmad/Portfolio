@@ -1,0 +1,563 @@
+/* Projects Section (Case Study Landscape Cards) */
+.projects-section {
+  padding-bottom: 3.5rem;
+}
+
+.project-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  margin-top: 1.5rem;
+}
+
+.project-card {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  overflow: hidden;
+  background: #ffffff;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+}
+
+.project-card:hover {
+  border-color: var(--card-hover-border);
+  box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.06);
+}
+
+/* Custom project accent mappings */
+.project-pink {
+  --project-accent: var(--pastel-pink-fg);
+  --project-bg: var(--pastel-pink-bg);
+}
+
+.project-orange {
+  --project-accent: var(--pastel-orange-fg);
+  --project-bg: var(--pastel-orange-bg);
+}
+
+.project-yellow {
+  --project-accent: var(--pastel-yellow-fg);
+  --project-bg: var(--pastel-yellow-bg);
+}
+
+/* Mockup presentation wrapper */
+.project-mockup-wrapper {
+  background: var(--project-bg);
+  padding: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 380px;
+  transition: background 0.3s ease;
+}
+
+.project-mockup-container {
+  width: 100%;
+  max-width: 320px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .project-mockup-container {
+  transform: scale(1.05) translateY(-2px);
+}
+
+/* CSS Mockup structures */
+/* 1. Phone Mockup */
+.mockup-phone {
+  width: 200px;
+  height: 380px;
+  background: #0f172a;
+  border-radius: 36px;
+  padding: 8px;
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.3);
+  position: relative;
+  border: 4px solid #334155;
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  background: #f8fafc;
+  border-radius: 28px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-family: var(--body);
+}
+
+.phone-header {
+  height: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #334155;
+  background: transparent;
+  z-index: 2;
+}
+
+.phone-notch {
+  width: 60px;
+  height: 12px;
+  background: #0f172a;
+  border-radius: 0 0 10px 10px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+}
+
+.phone-app-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.mock-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.mock-label {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+}
+
+.mock-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-top: 2px;
+}
+
+.mock-transfer-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin: 4px 0;
+}
+
+.mock-user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  border: 2px solid #ffffff;
+}
+
+.mock-user-avatar:nth-child(1) {
+  background: #fbcfe8;
+}
+
+.mock-user-avatar:nth-child(2) {
+  background: #fef08a;
+}
+
+.mock-user-avatar.add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 600;
+  background: #f1f5f9;
+  border: 2px dashed #cbd5e1;
+}
+
+.mock-button {
+  background: var(--project-accent);
+  color: #ffffff;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* 2. Browser Mockup */
+.mockup-browser {
+  width: 280px;
+  height: 200px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.browser-header {
+  height: 28px;
+  background: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 12px;
+}
+
+.browser-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.browser-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #cbd5e1;
+}
+
+.browser-dots span:nth-child(1) {
+  background: #fca5a5;
+}
+
+.browser-dots span:nth-child(2) {
+  background: #fde047;
+}
+
+.browser-dots span:nth-child(3) {
+  background: #86efac;
+}
+
+.browser-url {
+  font-size: 8px;
+  color: #94a3b8;
+  background: #ffffff;
+  padding: 2px 16px;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+  flex-grow: 1;
+  max-width: 140px;
+  text-align: center;
+}
+
+.browser-content {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  background: #f8fafc;
+}
+
+.mock-sidebar {
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  padding: 10px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mock-side-item {
+  height: 6px;
+  border-radius: 3px;
+  background: #f1f5f9;
+}
+
+.mock-side-item.active {
+  background: var(--project-accent);
+}
+
+.mock-body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mock-title-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mock-h {
+  width: 40px;
+  height: 8px;
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.mock-w {
+  width: 20px;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+}
+
+.mock-chart-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 80px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  padding: 10px 16px;
+}
+
+.mock-chart-bar {
+  width: 14px;
+  background: var(--project-accent);
+  border-radius: 4px 4px 0 0;
+  opacity: 0.8;
+}
+
+/* 3. Checkout Mockup */
+.mockup-checkout {
+  width: 240px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.checkout-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  font-size: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+.step.active {
+  background: var(--project-accent);
+  color: #ffffff;
+}
+
+.step-line {
+  flex-grow: 1;
+  height: 2px;
+  background: #e2e8f0;
+  margin: 0 4px;
+}
+
+.step-line.active {
+  background: var(--project-accent);
+}
+
+.checkout-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mock-h.short {
+  width: 60px;
+  height: 8px;
+}
+
+.mock-item-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.item-sq {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: #f1f5f9;
+}
+
+.item-lines {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.line-item {
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 3px;
+}
+
+.line-item.full {
+  width: 100%;
+}
+
+.line-item.half {
+  width: 40%;
+}
+
+.checkout-summary {
+  border-top: 1px dashed #e2e8f0;
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.summary-line {
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 3px;
+  width: 50%;
+}
+
+.summary-line.font-bold {
+  width: 70%;
+  background: var(--project-accent);
+}
+
+/* Project Details Side */
+.project-details {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.8rem;
+}
+
+.role-badge {
+  background: var(--project-bg);
+  color: var(--project-accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-family: var(--display);
+}
+
+.timeline {
+  font-size: 0.78rem;
+  color: var(--muted-light);
+  font-weight: 500;
+}
+
+.project-card h3 {
+  font-family: var(--display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.ux-brief {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--muted);
+  margin-bottom: 1.4rem;
+  border-left: 2px solid var(--line);
+  padding-left: 1rem;
+}
+
+.ux-brief strong {
+  color: var(--ink);
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.8rem;
+}
+
+.tag-pill {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #64748b;
+  background: #f8fafc;
+  border: 1px solid var(--line);
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+}
+
+.project-links {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.project-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  font-family: var(--display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.project-link-btn.primary {
+  background: var(--project-accent);
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.project-link-btn.primary:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+}
+
+.project-link-btn.secondary {
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: transparent;
+}
+
+.project-link-btn.secondary:hover {
+  background: var(--bg);
+  border-color: var(--card-hover-border);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 1024px) {
+  .project-card {
+    grid-template-columns: 1fr;
+  }
+
+  .project-mockup-wrapper {
+    min-height: 320px;
+  }
+}

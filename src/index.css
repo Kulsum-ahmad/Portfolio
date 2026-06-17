@@ -1,0 +1,67 @@
+:root {
+  /* Core Palette (Soft Warm Neutral) */
+  --bg: #fdfbf7; /* Very soft warm cream */
+  --ink: #1e1b18; /* Deep warm charcoal */
+  --muted: #57534e; /* Warm stone gray */
+  --muted-light: #a8a29e;
+  --line: #f5f5f4;
+  --card: #ffffff;
+  --card-hover-border: #e7e5e4;
+
+  /* Accent Highlight (Soft Coral Pink / Sunset Orange) */
+  --accent: #fdfbf7;
+  --accent-soft: #fff7ed; /* Soft peach/orange */
+  --accent-strong: #f43f5e; /* Warm Rose Pink */
+  --accent-strong-hover: #e11d48;
+
+  /* Pastel Project Colors (For visual categorizing - Sunset Palette) */
+  --pastel-pink-bg: #fff1f2;
+  --pastel-pink-fg: #db2777;
+  --pastel-orange-bg: #fff7ed;
+  --pastel-orange-fg: #ea580c;
+  --pastel-yellow-bg: #fefce8;
+  --pastel-yellow-fg: #b45309;
+
+  /* Fonts */
+  --display: 'Plus Jakarta Sans', sans-serif;
+  --body: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  font-family: var(--body);
+  line-height: 1.6;
+  color: var(--muted);
+  background: var(--bg);
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar for premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
