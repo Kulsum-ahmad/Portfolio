@@ -9,11 +9,22 @@ function Navbar() {
       </a>
       <nav aria-label="Main Navigation">
         <a href="#about">About</a>
-        <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
-        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="resume-link" style={{ background: '#1e1b18', color: '#fff', padding: '8px 16px', borderRadius: '8px', fontWeight: '500', transition: 'all 0.2s ease', border: '1px solid #1e1b18' }}>Resume</a>
       </nav>
+      <div className="nav-actions">
+        <a 
+          href="/Kulsum_Ahmad_Resume.pdf" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          download="Kulsum_Ahmad_Resume.pdf"
+          className="resume-link"
+        >
+          Resume
+        </a>
+      </div>
     </header>
   )
 }

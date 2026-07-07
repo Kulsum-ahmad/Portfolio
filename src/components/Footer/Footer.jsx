@@ -9,12 +9,16 @@ function Footer() {
         <div className="footer-left">
           <span className="footer-logo">KA</span>
           <p className="footer-copyright">
-            © {new Date().getFullYear()} Kulsum Ahmad. All rights reserved.
+            © {new Date().getFullYear()} Kulsum Ahmad. Built with passion & precision.
           </p>
         </div>
         <div className="footer-right">
-          <a href="/Kulsum_Ahmad_Resume.pdf" download className="btn btn-solid resume-btn-bottom">
-            <Download size={16} /> Download Resume
+          <a 
+            href="/Kulsum_Ahmad_Resume.pdf" 
+            download="Kulsum_Ahmad_Resume.pdf" 
+            className="footer-download-btn"
+          >
+            <Download size={15} /> Download CV
           </a>
         </div>
       </div>

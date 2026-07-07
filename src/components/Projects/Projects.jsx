@@ -1,8 +1,7 @@
-import React from 'react'
-import { ExternalLink, Code } from 'lucide-react'
-import './Projects.css'
+import React, { useState, useEffect } from 'react'
+import { Sparkles, Clock, ExternalLink, Code } from 'lucide-react'
 
-const GitHubIcon = ({ size = 14, className }) => (
+const GitHubIcon = ({ size = 20, className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
@@ -20,180 +19,223 @@ const GitHubIcon = ({ size = 14, className }) => (
   </svg>
 )
 
-const projects = [
-  {
-    title: 'Fintech Mobile App Redesign',
-    role: 'Lead UI/UX Designer',
-    timeline: '4 Weeks',
-    challenge: 'Users faced cognitive overload when transfering funds, leading to a 24% drop-off in the checkout/transaction funnel.',
-    solution: 'Streamlined the multi-step transaction wizard, reduced fields by 40%, and added micro-interactions for transaction confirmation.',
-    stack: 'Figma, Interactive Prototyping, Usability Testing',
-    colorClass: 'project-pink',
-    previewType: 'mobile-app',
-    live: '#',
-    code: '#'
-  },
-  {
-    title: 'SaaS Analytics Dashboard',
-    role: 'UX Researcher & Developer',
-    timeline: '6 Weeks',
-    challenge: 'Enterprise administrators were overwhelmed by data density, resulting in a steep learning curve and long onboarding times.',
-    solution: 'Designed a component-driven dashboard widgets system, created accessible data visualization layouts, and built a clean React system.',
-    stack: 'React, Design Systems, ChartJS, CSS Grid',
-    colorClass: 'project-orange',
-    previewType: 'dashboard',
-    live: '#',
-    code: '#'
-  },
-  {
-    title: 'E-Commerce Checkout Optimization',
-    role: 'UI/UX & Product Designer',
-    timeline: '3 Weeks',
-    challenge: 'High cart abandonment rates due to confusing guest checkout policies and lengthy billing/shipping forms.',
-    solution: 'Restructured the flow to a single-page smart checkout, added progress cues, inline validation, and autocomplete location APIs.',
-    stack: 'Figma, React, Form Usability, A/B Testing',
-    colorClass: 'project-yellow',
-    previewType: 'checkout',
-    live: '#',
-    code: '#'
-  }
-]
-
 function Projects() {
+  // --- VORTEX TICKETS TIMER SIMULATOR ---
+  const [ticketTime, setTicketTime] = useState(300)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTicketTime(prev => (prev <= 1 ? 300 : prev - 1))
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [])
+  
+  const formatTime = (secs) => {
+    const mins = Math.floor(secs / 60)
+    const s = secs % 60
+    return `0${mins}:${s < 10 ? '0' : ''}${s}`
+  }
+
+  // --- SMARTMOCK AI INTERVIEW CHAT SIMULATOR ---
+  const [chatStep, setChatStep] = useState(0)
+  useEffect(() => {
+    const chatInterval = setInterval(() => {
+      setChatStep(prev => (prev >= 3 ? 0 : prev + 1))
+    }, 4500)
+    return () => clearInterval(chatInterval)
+  }, [])
+
   return (
-    <section id="projects" className="panel projects-section">
-      <div className="section-title">
-        <h2>Selected Projects</h2>
-        <div className="divider"></div>
+    <div id="projects" className="bento-card projects-section-card glass-card">
+      <div className="projects-section-header">
+        <h2 className="section-hdr">
+          <Sparkles size={18} className="text-cyan animate-pulse" /> Highlighted Projects
+        </h2>
       </div>
 
-      <div className="project-grid">
-        {projects.map((project) => (
-          <article className={`project-card ${project.colorClass}`} key={project.title}>
-            {/* CSS Interactive UI Mockups */}
-            <div className="project-mockup-wrapper">
-              <div className="project-mockup-container">
-                {project.previewType === 'mobile-app' && (
-                  <div className="mockup-phone">
-                    <div className="phone-screen">
-                      <div className="phone-header">
-                        <div className="phone-notch"></div>
-                        <span className="phone-time">9:41</span>
-                      </div>
-                      <div className="phone-app-content">
-                        <div className="mock-card">
-                          <span className="mock-label">Available Balance</span>
-                          <span className="mock-value">$4,850.20</span>
-                        </div>
-                        <div className="mock-transfer-row">
-                          <div className="mock-user-avatar"></div>
-                          <div className="mock-user-avatar"></div>
-                          <div className="mock-user-avatar add-btn">+</div>
-                        </div>
-                        <div className="mock-button">Send Funds</div>
-                      </div>
+      <div className="projects-grid">
+        {/* Card 1: SmartMock AI */}
+        <div className="project-detail-card">
+          <div className="project-card-header">
+            <a href="https://github.com/Kulsum-ahmad" target="_blank" rel="noopener noreferrer" className="proj-header-link">
+              SmartMock AI <span className="live-status-pill">Live Link Available</span>
+            </a>
+            <div className="project-header-icons">
+              <a href="https://github.com/Kulsum-ahmad" target="_blank" rel="noopener noreferrer" title="View GitHub Code">
+                <GitHubIcon size={16} />
+              </a>
+              <a href="https://github.com/Kulsum-ahmad" target="_blank" rel="noopener noreferrer" title="View Live Site">
+                <ExternalLink size={16} />
+              </a>
+            </div>
+          </div>
+
+          <div className="project-tech-row font-mono">
+            React 19 · Node.js · Express · Gemini 2.5 Flash · BullMQ (Redis) · Zod · Jest
+          </div>
+
+          <div className="project-card-content">
+            <ul className="project-bullets">
+              <li>Architected a full-stack mock interview simulator evaluating speech pacing and code accuracy via Gemini 2.5 Flash across 16 technical engineering sub-roles.</li>
+              <li>Implemented a local Retrieval-Augmented Generation (RAG) context engine using Gemini vectors and Cosine Similarity search to optimize data context delivery.</li>
+              <li>Decoupled heavy LLM evaluation routines into a BullMQ worker queue to protect the core API gateway event loop from performance bottlenecks.</li>
+              <li>Engineered network jitter resilience using custom chunk_id Web Audio API streaming sequence headers over WebSockets with structural Zod schema validation fallbacks.</li>
+            </ul>
+            
+            {/* Interactive Simulator: Mock Chat */}
+            <div className="proj-simulator">
+              <div className="simulator-header">
+                <span className="sim-dot bg-red"></span>
+                <span className="sim-dot bg-yellow"></span>
+                <span className="sim-dot bg-green"></span>
+                <span className="sim-title">SmartMock Terminal</span>
+              </div>
+              <div className="simulator-content chat-content">
+                <div className="chat-msg system">
+                  <span className="chat-avatar">AI</span>
+                  <div className="chat-bubble">
+                    How does the Event Loop handle asynchronous tasks in Node.js?
+                  </div>
+                </div>
+                
+                {chatStep >= 1 && (
+                  <div className="chat-msg user animate-slide-in">
+                    <span className="chat-avatar">ME</span>
+                    <div className="chat-bubble">
+                      It delegates system tasks to Libuv, running callbacks in different phases like poll and timers.
                     </div>
                   </div>
                 )}
 
-                {project.previewType === 'dashboard' && (
-                  <div className="mockup-browser">
-                    <div className="browser-header">
-                      <div className="browser-dots">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </div>
-                      <div className="browser-url">analytics-app.co</div>
-                    </div>
-                    <div className="browser-content">
-                      <div className="mock-sidebar">
-                        <div className="mock-side-item active"></div>
-                        <div className="mock-side-item"></div>
-                        <div className="mock-side-item"></div>
-                      </div>
-                      <div className="mock-body">
-                        <div className="mock-title-row">
-                          <div className="mock-h"></div>
-                          <div className="mock-w"></div>
-                        </div>
-                        <div className="mock-chart-container">
-                          <div className="mock-chart-bar" style={{ height: '35%' }}></div>
-                          <div className="mock-chart-bar" style={{ height: '65%' }}></div>
-                          <div className="mock-chart-bar" style={{ height: '50%' }}></div>
-                          <div className="mock-chart-bar" style={{ height: '80%' }}></div>
-                          <div className="mock-chart-bar" style={{ height: '40%' }}></div>
-                        </div>
-                      </div>
+                {chatStep >= 2 && (
+                  <div className="chat-msg system animate-slide-in">
+                    <span className="chat-avatar">AI</span>
+                    <div className="chat-bubble evaluation glow-cyan">
+                      💡 <strong>Cosine Similarity: 94%</strong>
+                      <p className="eval-text">Accurate overview. Excellent mention of Libuv and phase execution.</p>
                     </div>
                   </div>
                 )}
 
-                {project.previewType === 'checkout' && (
-                  <div className="mockup-checkout">
-                    <div className="checkout-stepper">
-                      <div className="step active">1</div>
-                      <div className="step-line active"></div>
-                      <div className="step active">2</div>
-                      <div className="step-line"></div>
-                      <div className="step">3</div>
-                    </div>
-                    <div className="checkout-content">
-                      <div className="mock-h short"></div>
-                      <div className="mock-item-row">
-                        <div className="item-sq"></div>
-                        <div className="item-lines">
-                          <div className="line-item full"></div>
-                          <div className="line-item half"></div>
-                        </div>
-                      </div>
-                      <div className="checkout-summary">
-                        <div className="summary-line"></div>
-                        <div className="summary-line font-bold"></div>
-                      </div>
-                    </div>
+                {chatStep === 3 && (
+                  <div className="chat-pulse-indicator animate-pulse">
+                    Analyzing speech vectors...
                   </div>
                 )}
               </div>
             </div>
+          </div>
 
-            <div className="project-details">
-              <div className="project-meta">
-                <span className="role-badge">{project.role}</span>
-                <span className="timeline">{project.timeline}</span>
+          <div className="project-card-footer">
+            <a href="https://github.com/Kulsum-ahmad" target="_blank" rel="noopener noreferrer" className="btn-solid btn-sm">
+              View Live App <ExternalLink size={13} />
+            </a>
+            <a href="https://github.com/Kulsum-ahmad" target="_blank" rel="noopener noreferrer" className="btn-outline-sm btn-link-sub">
+              GitHub Repo
+            </a>
+          </div>
+        </div>
+
+        {/* Card 2: Vortex Tickets */}
+        <div className="project-detail-card">
+          <div className="project-card-header">
+            <span className="proj-header-link-static">Vortex Tickets</span>
+            <div className="project-header-icons">
+              <a href="https://github.com/Kulsum-ahmad" target="_blank" rel="noopener noreferrer" title="View GitHub Code">
+                <GitHubIcon size={16} />
+              </a>
+            </div>
+          </div>
+
+          <div className="project-tech-row font-mono">
+            Spring WebFlux · React (Vite) · PostgreSQL · R2DBC · WebSockets · Docker
+          </div>
+
+          <div className="project-card-content">
+            <ul className="project-bullets">
+              <li>Built a high-performance, non-blocking event ticketing engine using Spring WebFlux and R2DBC to handle concurrent operations without thread starvation.</li>
+              <li>Integrated WebSockets for live inventory tracking and engineered a 5-minute database ticket lock to eliminate structural race conditions and double-bookings.</li>
+              <li>Developed an automated background task worker running every 10 seconds to programmatically clear expired database reservations.</li>
+            </ul>
+
+            {/* Interactive Simulator: Seating and Timer */}
+            <div className="proj-simulator">
+              <div className="simulator-header">
+                <span className="sim-dot bg-red"></span>
+                <span className="sim-dot bg-yellow"></span>
+                <span className="sim-dot bg-green"></span>
+                <span className="sim-title">Live Inventory Stream</span>
               </div>
-              <h3>{project.title}</h3>
+              <div className="simulator-content ticketing-content">
+                <div className="ticket-timer-bar">
+                  <span className="timer-label"><Clock size={12} /> Temp Reservation Lock:</span>
+                  <span className="timer-val text-orange">{formatTime(ticketTime)}</span>
+                </div>
+                
+                <div className="seating-chart">
+                  {[...Array(25)].map((_, idx) => {
+                    let status = 'available'
+                    if (idx === 6 || idx === 12 || idx === 18) status = 'reserved'
+                    else if (idx === 7 || idx === 8) status = 'locked'
+                    else if (idx === 14 && ticketTime % 2 === 0) status = 'locked'
+                    else if (idx === 22 && ticketTime % 3 === 0) status = 'reserved'
 
-              <div className="ux-brief">
-                <p>
-                  <strong>Challenge:</strong> {project.challenge}
-                </p>
-                <p>
-                  <strong>Solution:</strong> {project.solution}
-                </p>
-              </div>
-
-              <div className="project-tags">
-                {project.stack.split(', ').map((tag) => (
-                  <span key={tag} className="tag-pill">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <div className="project-links">
-                <a href={project.live} className="project-link-btn primary" target="_blank" rel="noreferrer">
-                  Live Demo <ExternalLink size={14} />
-                </a>
-                <a href={project.code} className="project-link-btn secondary" target="_blank" rel="noreferrer">
-                  GitHub Repo <GitHubIcon size={14} />
-                </a>
+                    return (
+                      <div 
+                        key={idx} 
+                        className={`seat ${status}`} 
+                        title={`${status.toUpperCase()} seat #${idx + 1}`}
+                      ></div>
+                    )
+                  })}
+                </div>
+                <div className="seating-legend">
+                  <span className="leg-item"><span className="leg-dot bg-cyan"></span> Free</span>
+                  <span className="leg-item"><span className="leg-dot bg-orange"></span> Locked</span>
+                  <span className="leg-item"><span className="leg-dot bg-red"></span> Sold</span>
+                </div>
               </div>
             </div>
-          </article>
-        ))}
+          </div>
+
+          <div className="project-card-footer">
+            <a href="https://github.com/Kulsum-ahmad" target="_blank" rel="noopener noreferrer" className="btn-solid btn-sm">
+              GitHub Repo <GitHubIcon size={13} />
+            </a>
+          </div>
+        </div>
+
+        {/* Card 3: SkillBridge */}
+        <div className="project-detail-card span-two-cols">
+          <div className="project-card-header">
+            <span className="proj-header-link-static">
+              SkillBridge <span className="internship-label">Infosys Springboard Internship</span>
+            </span>
+            <div className="project-header-icons">
+              <a href="https://github.com/Kulsum-ahmad" target="_blank" rel="noopener noreferrer" title="View GitHub Code">
+                <GitHubIcon size={16} />
+              </a>
+            </div>
+          </div>
+
+          <div className="project-tech-row font-mono">
+            React.js · Node.js · Express · MongoDB · Socket.io · Git · Agile
+          </div>
+
+          <div className="project-card-content">
+            <ul className="project-bullets">
+              <li>Developed as part of the Infosys Springboard Virtual Internship 6.0 within an Agile team of 6 engineers. Individually co-architected a bi-directional real-time chat platform and automated push notification infrastructure powered by Socket.io.</li>
+              <li>Engineered clean frontend interfaces utilizing React.js and CSS Modules, implementing component rendering guardrails to optimize client-side lifecycle execution and eliminate unnecessary DOM re-rendering overhead.</li>
+            </ul>
+          </div>
+
+          <div className="project-card-footer">
+            <a href="https://github.com/Kulsum-ahmad" target="_blank" rel="noopener noreferrer" className="btn-solid btn-sm">
+              GitHub Repo <GitHubIcon size={13} />
+            </a>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
   )
 }
 

@@ -1,8 +1,7 @@
-/* Resume Download Buttons & Footer Styling */
 .site-footer {
   margin-top: 5rem;
   padding: 2.5rem 1.5rem 2rem;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .footer-content {
@@ -25,32 +24,41 @@
   width: 34px;
   height: 34px;
   border-radius: 8px;
-  font-family: var(--display);
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: 0.85rem;
   color: #ffffff;
-  background: linear-gradient(135deg, var(--accent-strong), #f97316);
-  box-shadow: 0 3px 8px rgba(244, 63, 94, 0.2);
+  background: var(--accent-gradient);
+  box-shadow: 0 3px 8px rgba(99, 102, 241, 0.25);
 }
 
 .footer-copyright {
-  font-size: 0.85rem;
-  color: var(--muted-light);
+  font-size: 0.88rem;
+  color: var(--text-muted);
   font-weight: 500;
 }
 
-.resume-btn-bottom {
-  background: var(--ink);
-  color: #ffffff;
-  padding: 0.75rem 1.5rem;
-  font-size: 0.9rem;
+.footer-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.65rem 1.25rem;
+  font-size: 0.88rem;
+  font-weight: 600;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+  transition: all 0.2s ease;
 }
 
-.resume-btn-bottom:hover {
-  background: var(--accent-strong);
-  box-shadow: 0 6px 16px rgba(244, 63, 94, 0.25);
+.footer-download-btn:hover {
+  background: var(--accent-gradient);
+  border-color: transparent;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
 }
 
 @media (max-width: 768px) {

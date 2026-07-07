@@ -1,218 +1,92 @@
 import React, { useState } from 'react'
-import { Mail, Send, CheckCircle, Copy, Check } from 'lucide-react'
-import './Contact.css'
-
-// Custom Brand Icons since they are missing from this lucide-react package
-const LinkedInIcon = ({ size = 20, className }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect x="2" y="9" width="4" height="12" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-)
-
-const GitHubIcon = ({ size = 20, className }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-    <path d="M9 18c-4.51 2-5-2-7-2" />
-  </svg>
-)
+import { Mail, Send, CheckCircle } from 'lucide-react'
 
 function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
-  const [formStatus, setFormStatus] = useState('idle') // 'idle' | 'submitting' | 'success'
-  const [copied, setCopied] = useState(false)
+  const [contactName, setContactName] = useState('')
+  const [contactEmail, setContactEmail] = useState('')
+  const [contactMsg, setContactMsg] = useState('')
+  const [contactStatus, setContactStatus] = useState('idle') // idle | submitting | success
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText('kulsumahmad0703@gmail.com')
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
-
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = (e) => {
+  const handleContactSubmit = (e) => {
     e.preventDefault()
-    if (!formData.name || !formData.email || !formData.message) return
-
-    setFormStatus('submitting')
-    // Simulate API call to send message
+    if (!contactName || !contactEmail || !contactMsg) return
+    setContactStatus('submitting')
     setTimeout(() => {
-      setFormStatus('success')
-      setFormData({ name: '', email: '', subject: '', message: '' })
-    }, 1200)
-  }
-
-  const handleResetForm = () => {
-    setFormStatus('idle')
+      setContactStatus('success')
+      setContactName('')
+      setContactEmail('')
+      setContactMsg('')
+    }, 1500)
   }
 
   return (
-    <section id="contact" className="panel contact-section">
+    <div id="contact" className="bento-card contact-section-card glass-card">
       <div className="section-title">
-        <h2>Let's Connect</h2>
+        <h2 className="section-hdr"><Mail size={18} className="text-cyan" /> Let's Connect</h2>
         <div className="divider"></div>
       </div>
-      <div className="contact-grid">
-        {/* Contact Details & Links */}
-        <div className="contact-info">
-          <p className="contact-lead">
-            I'm currently seeking UI/UX design internships, frontend opportunities, or collaborative projects. Let's make something amazing together!
-          </p>
-
-          {/* Email Copier */}
-          <div className="email-copier-card">
-            <div className="email-header">
-              <Mail size={18} className="email-icon" />
-              <span>Direct Email</span>
+      
+      {contactStatus === 'success' ? (
+        <div className="contact-success-state animate-scale-in">
+          <CheckCircle size={36} className="text-cyan animate-pulse" />
+          <h3>Message Dispatched!</h3>
+          <p>Thank you for reaching out, I will review and respond as soon as possible.</p>
+          <button className="btn-solid btn-sm mt-1" onClick={() => setContactStatus('idle')}>
+            Send Another
+          </button>
+        </div>
+      ) : (
+        <form onSubmit={handleContactSubmit} className="contact-grid-form">
+          <div className="contact-inputs-col">
+            <div className="input-field-wrap">
+              <label>Name</label>
+              <input 
+                type="text" 
+                placeholder="Your Name" 
+                value={contactName}
+                onChange={e => setContactName(e.target.value)}
+                required
+                disabled={contactStatus === 'submitting'}
+              />
             </div>
-            <div className="email-body">
-              <span className="email-address">kulsumahmad0703@gmail.com</span>
-              <button
-                onClick={handleCopyEmail}
-                className={`copy-btn ${copied ? 'copied' : ''}`}
-                aria-label="Copy email address"
-              >
-                {copied ? <Check size={16} /> : <Copy size={16} />}
-                <span>{copied ? 'Copied!' : 'Copy'}</span>
-              </button>
+            <div className="input-field-wrap">
+              <label>Email</label>
+              <input 
+                type="email" 
+                placeholder="your.email@example.com" 
+                value={contactEmail}
+                onChange={e => setContactEmail(e.target.value)}
+                required
+                disabled={contactStatus === 'submitting'}
+              />
             </div>
           </div>
-
-          {/* Social Channels - Labeled Cards instead of long tacky URLs */}
-          <div className="social-channels-list">
-            <h3>Social Profiles</h3>
-            <div className="social-links-grid">
-              <a href="https://www.linkedin.com/in/kulsum-ahmad-a00560324" target="_blank" rel="noreferrer" className="social-chip">
-                <LinkedInIcon size={20} className="social-icon-linkedin" />
-                <div className="social-label">
-                  <span className="platform">LinkedIn</span>
-                  <span className="username">Kulsum Ahmad</span>
-                </div>
-              </a>
-              <a href="https://github.com/Kulsum-ahmad" target="_blank" rel="noreferrer" className="social-chip">
-                <GitHubIcon size={20} className="social-icon-github" />
-                <div className="social-label">
-                  <span className="platform">GitHub</span>
-                  <span className="username">Kulsum-ahmad</span>
-                </div>
-              </a>
+          <div className="contact-message-col">
+            <div className="input-field-wrap height-full">
+              <label>Message</label>
+              <textarea 
+                placeholder="Hello! Let's discuss a project or internship opportunity..." 
+                value={contactMsg}
+                onChange={e => setContactMsg(e.target.value)}
+                required
+                disabled={contactStatus === 'submitting'}
+              ></textarea>
             </div>
+            <button 
+              type="submit" 
+              className="btn-solid btn-submit-new"
+              disabled={contactStatus === 'submitting'}
+            >
+              {contactStatus === 'submitting' ? (
+                <span className="spinner"></span>
+              ) : (
+                <>Send Message <Send size={14} /></>
+              )}
+            </button>
           </div>
-        </div>
-
-        {/* Contact Form */}
-        <div className="contact-form-container">
-          {formStatus === 'success' ? (
-            <div className="form-success-state">
-              <CheckCircle size={48} className="success-icon" />
-              <h3>Message Sent!</h3>
-              <p>Thank you for reaching out, Kulsum will get back to you shortly.</p>
-              <button onClick={handleResetForm} className="btn btn-solid btn-reset">
-                Send Another Message
-              </button>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="contact-form">
-              <div className="form-row-group">
-                <div className="form-group">
-                  <label htmlFor="form-name">Name *</label>
-                  <input
-                    type="text"
-                    id="form-name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Your name"
-                    required
-                    disabled={formStatus === 'submitting'}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="form-email">Email *</label>
-                  <input
-                    type="email"
-                    id="form-email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="your.email@example.com"
-                    required
-                    disabled={formStatus === 'submitting'}
-                  />
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="form-subject">Subject</label>
-                <input
-                  type="text"
-                  id="form-subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  placeholder="Collaboration, Internship, Design Project..."
-                  disabled={formStatus === 'submitting'}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="form-message">Message *</label>
-                <textarea
-                  id="form-message"
-                  name="message"
-                  rows={5}
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Hello! Let's discuss a project or internship..."
-                  required
-                  disabled={formStatus === 'submitting'}
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className={`btn btn-solid btn-submit ${formStatus === 'submitting' ? 'submitting' : ''}`}
-                disabled={formStatus === 'submitting'}
-              >
-                {formStatus === 'submitting' ? (
-                  <span className="spinner"></span>
-                ) : (
-                  <>
-                    Send Message <Send size={16} className="send-icon" />
-                  </>
-                )}
-              </button>
-            </form>
-          )}
-        </div>
-      </div>
-    </section>
+        </form>
+      )}
+    </div>
   )
 }
 

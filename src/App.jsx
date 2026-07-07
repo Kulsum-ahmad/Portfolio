@@ -1,24 +1,14 @@
 import Navbar from './components/Navbar/Navbar'
-import Hero from './components/Hero/Hero'
-import About from './components/About/About'
-import Education from './components/Education/Education'
-import Skills from './components/Skills/Skills'
-import Projects from './components/Projects/Projects'
-import Contact from './components/Contact/Contact'
+import BentoGrid from './components/BentoGrid/BentoGrid'
 import Footer from './components/Footer/Footer'
 import './App.css'
 
 function App() {
   return (
-    <div className="site-shell">
+    <div className="site-shell" id="home">
       <Navbar />
       <main>
-        <Hero />
-        <About />
-        <Education />
-        <Skills />
-        <Projects />
-        <Contact />
+        <BentoGrid />
       </main>
       <Footer />
     </div>
